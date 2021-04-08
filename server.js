@@ -2,10 +2,30 @@ const http = require("http");
 const Koa = require("koa");
 const { v4: uuidv4 } = require('uuid');
 const Router = require("koa-router");
+const faker = require('faker');
 
 const app = new Koa();
 
-const messages = [];
+const data = {
+  "status": "ok",
+  "timestamp": 1553400000,
+  "messages": [
+    {
+      "id": uuidv4,
+      "from": faker.name,
+      "subject": faker.,
+      "body": "Long message body here" ,
+      "received": 1553108200
+    },
+    {
+      "id": uuidv4,
+      "from": faker.name,
+      "subject": "Hello from Alex Petrov!",
+      "body": "Long message body here",
+      "received": 1553107200
+    },
+  ]
+}
 
 console.log('Hello!');
 
@@ -47,11 +67,14 @@ app.use(async (ctx, next) => {
 });
 
 app.use(async (ctx) => {
-  const {
-    method, shorttext, fulltext, id,
-  } = ctx.request.query;
+  const { method } = ctx.request.query;
 
-  console.log(ctx.request.query);
+  console.log(method);
+
+  switch(method) {
+    case 'addMessage':
+      ctx.response.body = ['Hello !!!']
+  }
 });
 
 const router = new Router();
