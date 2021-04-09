@@ -3,7 +3,8 @@ class Formatter {
     this.date = new Date();
   }
 
-  format() {
+  format(date) {
+    date = date ? date : new Date();
     this.annualFormatter = new Intl.DateTimeFormat("ru", {
       year: 'numeric',
       month: 'numeric',
@@ -15,7 +16,7 @@ class Formatter {
       minute: 'numeric'
     });
 
-    return `${this.dailyFormatter.format(this.date)} ${this.annualFormatter.format(this.date)}`;
+    return `${this.dailyFormatter.format(date)} ${this.annualFormatter.format(date)}`;
   }
 }
 

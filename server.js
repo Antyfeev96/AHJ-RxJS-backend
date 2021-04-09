@@ -17,19 +17,17 @@ const data = {
       "from": faker.internet.email(),
       "subject": faker.lorem.words(2),
       "body": faker.lorem.words(10) ,
-      "received": 1553108200
+      "received": formatter.format(1553108200)
     },
     {
       "id": uuidv4,
       "from": faker.internet.email(),
       "subject": faker.lorem.words(2),
       "body": faker.lorem.words(10),
-      "received": 1553107200
+      "received": formatter.format()
     },
   ]
 }
-
-console.log('Hello!');
 
 app.use(async (ctx, next) => {
   const origin = ctx.request.get("Origin");
@@ -69,13 +67,18 @@ app.use(async (ctx, next) => {
 });
 
 app.use(async (ctx) => {
-  const { method } = ctx.request.query;
+  let { method } = ctx.request.query;
+  if (!method) method = null;
 
   console.log(method);
 
   switch(method) {
-    case 'addMessage':
+    case null:
+      ctx.response.body = 'Hello Mishka';
+      break;
+    case 'getMessages':
       ctx.response.body = data;
+      break;
   }
 });
 
