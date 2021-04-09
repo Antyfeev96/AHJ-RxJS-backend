@@ -3,25 +3,27 @@ const Koa = require("koa");
 const { v4: uuidv4 } = require('uuid');
 const Router = require("koa-router");
 const faker = require('faker');
+const Formatter = require("./src/js/Formatter");
+const formatter = new Formatter();
 
 const app = new Koa();
 
 const data = {
   "status": "ok",
-  "timestamp": 1553400000,
+  "timestamp": formatter.format(),
   "messages": [
     {
       "id": uuidv4,
-      "from": faker.name,
-      "subject": faker.,
-      "body": "Long message body here" ,
+      "from": faker.internet.email(),
+      "subject": faker.lorem.words(2),
+      "body": faker.lorem.words(10) ,
       "received": 1553108200
     },
     {
       "id": uuidv4,
-      "from": faker.name,
-      "subject": "Hello from Alex Petrov!",
-      "body": "Long message body here",
+      "from": faker.internet.email(),
+      "subject": faker.lorem.words(2),
+      "body": faker.lorem.words(10),
       "received": 1553107200
     },
   ]
@@ -73,7 +75,7 @@ app.use(async (ctx) => {
 
   switch(method) {
     case 'addMessage':
-      ctx.response.body = ['Hello !!!']
+      ctx.response.body = data;
   }
 });
 
