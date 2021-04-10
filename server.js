@@ -67,16 +67,8 @@ app.use(async (ctx, next) => {
 });
 
 app.use(async (ctx) => {
-  let { method } = ctx.request.query;
-  if (!method) method = null;
-
-  console.log(method);
-
-  switch(method) {
-    case null:
-      ctx.response.body = 'Hello Mishka';
-      break;
-    case 'getMessages':
+  switch (ctx.request.url) {
+    case '/messages/unread':
       ctx.response.body = data;
       break;
   }
