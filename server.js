@@ -22,7 +22,7 @@ const data = {
     {
       "id": uuidv4,
       "from": faker.internet.email(),
-      "subject": faker.lorem.words(2),
+      "subject": faker.lorem.words(3),
       "body": faker.lorem.words(10),
       "received": formatter.format()
     },
