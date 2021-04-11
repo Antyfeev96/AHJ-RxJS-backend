@@ -13,14 +13,14 @@ const data = {
   "timestamp": formatter.format(),
   "messages": [
     {
-      "id": uuidv4,
+      "id": uuidv4(),
       "from": faker.internet.email(),
       "subject": faker.lorem.words(2),
       "body": faker.lorem.words(10) ,
       "received": formatter.format(1553108200)
     },
     {
-      "id": uuidv4,
+      "id": uuidv4(),
       "from": faker.internet.email(),
       "subject": faker.lorem.words(3),
       "body": faker.lorem.words(10),
